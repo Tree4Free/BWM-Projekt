@@ -7,13 +7,7 @@ import javax.swing.*;
 public class GuiPanel extends JPanel{
 
 	private static final long serialVersionUID = 6345793767655993977L;
-	
 	JLabel label1;
-	JMenuBar menubar1;
-	JMenu menu1;
-	JMenuItem menuitem1;
-	JMenuItem menuitem2;
-	JMenuItem menuitem3;
 	
 	public GuiPanel() {
 		initializeComponents();
