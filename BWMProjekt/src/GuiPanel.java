@@ -20,8 +20,6 @@ public class GuiPanel extends JPanel{
 		button2 = new JButton("Verkauf");
 		
 		add(button1);
-		add(label1);
 		add(button2);
-		add(label2);
 	}
 }
