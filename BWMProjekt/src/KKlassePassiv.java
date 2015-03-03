@@ -3,8 +3,9 @@ import java.util.ArrayList;
 
 public class KKlassePassiv extends KKlasse{
 	
-	public KKlassePassiv(String kk, float anfangsbestand) {
+	public KKlassePassiv(String kk, float anfangsbestand, String name) {
 		// TODO Auto-generated constructor stub
+		this.name=name;
 		kontoklasse = kk;
 		soll = new ArrayList<Float>();
 		haben = new ArrayList<Float>();
@@ -14,11 +15,11 @@ public class KKlassePassiv extends KKlasse{
 		this.anfangsbestand=ab;
 		soll.add(this.anfangsbestand);
 	}
-	public void plusRechnen(float plus){
-		soll.add(plus);
-	}
 	public void minusRechnen(float minus){
-		haben.add(minus);
+		soll.add(minus);
+	}
+	public void plusRechnen(float plus){
+		haben.add(plus);
 	}
 	public float getEndbestand(){
 		float Endbestand=0f;

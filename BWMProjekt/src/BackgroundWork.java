@@ -26,13 +26,15 @@ public class BackgroundWork {
 	public void fill(){
 		for(Object s:kKlassenPlan.keySet()){
 			if(((String)s).startsWith("0")||((String)s).startsWith("1")||((String)s).startsWith("2")){
-				klassen.add(new KKlasseAktiv((String)s, 0));
+				klassen.add(new KKlasseAktiv((String)s, 0, kKlassenPlan.getProperty((String)s)));
 			}else if(((String)s).startsWith("3")||((String)s).startsWith("9")){
-				klassen.add(new KKlassePassiv((String)s, 0));
-			}else if(((String)s).startsWith("4")||((String)s).startsWith("5")||((String)s).startsWith("6")||((String)s).startsWith("7")||((String)s).startsWith("8")){
-				
+				klassen.add(new KKlassePassiv((String)s, 0, kKlassenPlan.getProperty((String)s)));
+			}else if(((String)s).startsWith("5")||((String)s).startsWith("6")||((String)s).startsWith("7")||((String)s).startsWith("8")){
+				klassen.add(new AwKlasse((String)s, kKlassenPlan.getProperty((String)s)));
+			}else if(((String)s).startsWith("4")/*||((String)s).startsWith("8")*/){
+				klassen.add(new ErKlasse((String)s, kKlassenPlan.getProperty((String)s)));
 			}else{
-				
+				System.out.println("Klasse exestiert nicht.");
 			}
 		}
 	}
