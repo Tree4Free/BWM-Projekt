@@ -1,20 +1,28 @@
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.*;
 
 
 public class GuiPanel extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6345793767655993977L;
 	
+	JLabel label1;
+	JMenuBar menubar1;
+	JMenu menu1;
+	JMenuItem menuitem1;
+	JMenuItem menuitem2;
+	JMenuItem menuitem3;
 	
 	public GuiPanel() {
-		// TODO Auto-generated constructor stub
 		initializeComponents();
 	}
+	
 	private void initializeComponents() {
-		// TODO Auto-generated method stub
+		label1 = new JLabel("1. Kontoklasse");
+		label1.setVisible(true);
 		
+		add(label1);
 	}
 }
