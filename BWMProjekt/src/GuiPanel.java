@@ -7,16 +7,21 @@ import javax.swing.*;
 public class GuiPanel extends JPanel{
 
 	private static final long serialVersionUID = 6345793767655993977L;
-	JLabel label1;
+	JButton button1;
+	JButton button2;
 	
 	public GuiPanel() {
 		initializeComponents();
 	}
 	
 	private void initializeComponents() {
-		label1 = new JLabel("1. Kontoklasse");
-		label1.setVisible(true);
 		
+		button1 = new JButton("Einkauf");
+		button2 = new JButton("Verkauf");
+		
+		add(button1);
 		add(label1);
+		add(button2);
+		add(label2);
 	}
 }
