@@ -1,7 +1,15 @@
+package Control;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Properties;
+
+import Model.AwKlasse;
+import Model.ErKlasse;
+import Model.KKlasse;
+import Model.KKlasseAktiv;
+import Model.KKlassePassiv;
 
 public class BackgroundWork {
 	Properties kKlassenPlan;
@@ -38,4 +46,5 @@ public class BackgroundWork {
 			}
 		}
 	}
+	
 }

@@ -1,4 +1,7 @@
+package Control;
 import javax.swing.SwingUtilities;
+
+import View.GuiFrame;
 
 
 public class Start {
@@ -10,7 +13,7 @@ public class Start {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				GuiFrame frame=new GuiFrame("BWM-Application");
+				GuiFrame frame=new GuiFrame("BWM-Projekt");
 			}
 		});
 	}
