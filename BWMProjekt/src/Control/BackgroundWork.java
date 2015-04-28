@@ -5,20 +5,35 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 
+import javax.swing.SwingUtilities;
+
 import Model.AwKlasse;
 import Model.ErKlasse;
 import Model.KKlasse;
 import Model.KKlasseAktiv;
 import Model.KKlassePassiv;
+import View.GuiFrame;
 
 public class BackgroundWork {
 	Properties kKlassenPlan;
 	ArrayList<KKlasse> klassen;
+	BWMActionListener al;
+	GuiFrame frame;
 	public BackgroundWork() {
 		// TODO Auto-generated constructor stub
+		BackgroundWork tempBG = this;
+		al=new BWMActionListener();
 		kKlassenPlan = new Properties();
 		load();
 		klassen = new ArrayList<>();
+		fill();
+		SwingUtilities.invokeLater(new Runnable() {	
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				frame=new GuiFrame("BWM-Projekt", tempBG);
+			}
+		});
 	}
 	
 	public void load(){
@@ -46,5 +61,8 @@ public class BackgroundWork {
 			}
 		}
 	}
-	
+
+	public BWMActionListener getAl() {
+		return al;
+	}	
 }

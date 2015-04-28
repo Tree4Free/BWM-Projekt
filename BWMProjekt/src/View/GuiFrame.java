@@ -1,8 +1,11 @@
 package View;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import Control.BackgroundWork;
 
 
 public class GuiFrame extends JFrame{
@@ -13,15 +16,17 @@ public class GuiFrame extends JFrame{
 	JMenuItem menuitem1;
 	JMenuItem menuitem2;
 	JMenuItem menuitem3;
-	public GuiFrame(String titel) {
+	BackgroundWork controller;
+	public GuiFrame(String titel, BackgroundWork c) {
 		super(titel);
-		initComponents();		
+		controller=c;
+		initComponents();
 	}
 		
 		private void initComponents()
 		{
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			GuiPanel panel1 = new GuiPanel();
+			GuiPanel panel1 = new GuiPanel(this);
 			this.add(panel1);  
 			
 			menubar1 = new JMenuBar();
@@ -38,5 +43,7 @@ public class GuiFrame extends JFrame{
 			this.setLocation(30,20); 
 			this.setVisible(true);
 		}
-
+		public BackgroundWork getController(){
+			return controller;
+		}
 }
