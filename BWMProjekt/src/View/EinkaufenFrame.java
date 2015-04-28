@@ -1,5 +1,7 @@
 package View;
 
-public class EinkaufenFrame {
+import javax.swing.JFrame;
 
+public class EinkaufenFrame extends JFrame{
+	
 }
