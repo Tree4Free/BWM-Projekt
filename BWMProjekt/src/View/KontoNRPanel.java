@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,7 +28,7 @@ public class KontoNRPanel extends JPanel{
 	BackgroundWork bg;
 	JTextField kontoNR;
 	JTable kontoNRList;
-	JButton button;
+	JLabel jL;
 	JPanel jp;
 	JScrollPane jsp=new JScrollPane();
 	DefaultTableModel DTM;
@@ -73,16 +73,16 @@ public class KontoNRPanel extends JPanel{
 	    kontoNRList.getTableHeader().setResizingAllowed(false);
 	    kontoNRList.getTableHeader().setReorderingAllowed(false);
 	    kontoNRList.getColumnModel().getColumn(0).setPreferredWidth(400);
-		jp.add(kontoNR);
-		jp.add(button);
+	    jp.add(jL);
+	    jp.add(kontoNR);
 		this.add(jp, BorderLayout.NORTH);
 		this.add(jsp, BorderLayout.CENTER);
 	}
 	private void initializeComponents(){
 		kontoNR = new JTextField();
-		button = new JButton("Search");
+		jL = new JLabel("Konto");
 		kontoNRList = new JTable();
-		kontoNR.setPreferredSize(new Dimension(100,30));
+		kontoNR.setPreferredSize(new Dimension(500,30));
 		kontoNR.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -102,7 +102,7 @@ public class KontoNRPanel extends JPanel{
 				if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
 					System.out.println("backspace");
 					for (KKlasse k:bg.getAr()) {
-						if((k.getKontoklasse()+" "+k.getName()).contains(kontoNR.getText())){
+						if((k.getKontoklasse()+" "+k.getName().toLowerCase()).contains(kontoNR.getText().toLowerCase())){
 							switch (k.getKontoklasse().charAt(0)) {
 							case '0':
 								kkl.add(new KKlasseAktiv(k.getKontoklasse(), 0, k.getName()));
@@ -143,7 +143,7 @@ public class KontoNRPanel extends JPanel{
 					return;
 				}
 				for (int i = 0; i < DTM.getRowCount(); i++) {
-					if(DTM.getValueAt(i, 0).toString().contains(kontoNR.getText())){
+					if(DTM.getValueAt(i, 0).toString().toLowerCase().contains(kontoNR.getText().toLowerCase())){
 						switch (DTM.getValueAt(i, 0).toString().charAt(0)) {
 						case '0':
 							kkl.add(new KKlasseAktiv(DTM.getValueAt(i, 0).toString().substring(0, 4), 0, DTM.getValueAt(i, 0).toString().substring(5)));
