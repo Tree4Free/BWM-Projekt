@@ -5,30 +5,38 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SwingUtilities;
 
-import View.EinkaufenFrame;
+import View.BuchungsFrame;
+import View.KontoNRFrame;
 
 public class BWMActionListener implements ActionListener{
-
+	BackgroundWork bw;
+	public BWMActionListener(BackgroundWork bw) {
+		// TODO Auto-generated constructor stub
+		this.bw=bw;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		switch (e.getActionCommand()) {
-		case "Einkauf":
-			System.out.println("Einkauf");
+		case "Buchung":
+			System.out.println("Buchung");
 			SwingUtilities.invokeLater(new Runnable() {
 				
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					EinkaufenFrame f= new EinkaufenFrame();
+					BuchungsFrame f= new BuchungsFrame(bw);
 				}
 			});
 			break;
 		case "Verkauf":
 			System.out.println("Verkauf");
 			break;
-		case "Manuell":
-			System.out.println("Manuell");
+		case "Kontoplan":
+			System.out.println("Kontoplan");
+			KontoNRFrame kf=new KontoNRFrame(bw);
+			kf.kp.fillTable(bw.klassen);
 			break;
 		default:
 			break;

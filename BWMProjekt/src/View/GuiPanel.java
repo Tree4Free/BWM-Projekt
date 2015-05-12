@@ -19,9 +19,9 @@ public class GuiPanel extends JPanel{
 	
 	private void initializeComponents() {
 		
-		einkaufBTN = new JButton("Einkauf");
+		einkaufBTN = new JButton("Buchung");
 		verkaufBTN = new JButton("Verkauf");
-		manuellBTN = new JButton("Manuell");
+		manuellBTN = new JButton("Kontoplan");
 		
 		add(einkaufBTN);
 		add(verkaufBTN);
