@@ -22,7 +22,7 @@ public class BackgroundWork {
 	public BackgroundWork() {
 		// TODO Auto-generated constructor stub
 		BackgroundWork tempBG = this;
-		al=new BWMActionListener();
+		al=new BWMActionListener(this);
 		kKlassenPlan = new Properties();
 		load();
 		klassen = new ArrayList<>();
@@ -61,7 +61,11 @@ public class BackgroundWork {
 			}
 		}
 	}
-
+	
+	public ArrayList<KKlasse> getAr(){
+		return klassen;
+	}
+	
 	public BWMActionListener getAl() {
 		return al;
 	}	

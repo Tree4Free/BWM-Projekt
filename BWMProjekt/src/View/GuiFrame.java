@@ -1,5 +1,8 @@
 package View;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,6 +24,7 @@ public class GuiFrame extends JFrame{
 		super(titel);
 		controller=c;
 		initComponents();
+		this.setLocationRelativeTo(null);
 	}
 		
 		private void initComponents()
@@ -33,11 +37,34 @@ public class GuiFrame extends JFrame{
 			menu1 = new JMenu("Datei");
 			menuitem1 = new JMenuItem("Laden");
 			menuitem2 = new JMenuItem("Speichern");
-			menuitem3 = new JMenuItem("Öffnen");
+			
+			menuitem1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					try {
+						
+					} catch (Exception e2) {
+						// TODO: handle exception
+					}
+				}
+			});
+			
+			menuitem2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			//menuitem3 = new JMenuItem("Öffnen");
 			menu1.add(menuitem1);
 			menu1.add(menuitem2);
-			menu1.add(menuitem3);
+			//menu1.add(menuitem3);
 			menubar1.add(menu1);
+			
 			this.setJMenuBar(menubar1);
 			this.setSize(350,300);
 			this.setLocation(30,20); 
