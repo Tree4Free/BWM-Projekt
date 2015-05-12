@@ -9,7 +9,8 @@ public class GuiPanel extends JPanel{
 
 	private static final long serialVersionUID = 6345793767655993977L;
 	GuiFrame gf;
-	JButton einkaufBTN;
+	JButton buchenBTN;
+	JButton kaufBTN;
 	JButton verkaufBTN;
 	JButton manuellBTN;
 	public GuiPanel(GuiFrame guiF) {
@@ -19,15 +20,18 @@ public class GuiPanel extends JPanel{
 	
 	private void initializeComponents() {
 		
-		einkaufBTN = new JButton("Buchung");
+		buchenBTN = new JButton("Buchung");
+		kaufBTN = new JButton("Kauf");
 		verkaufBTN = new JButton("Verkauf");
 		manuellBTN = new JButton("Kontoplan");
 		
-		add(einkaufBTN);
+		add(buchenBTN);
+		add(kaufBTN);
 		add(verkaufBTN);
 		add(manuellBTN);
 		
-		einkaufBTN.addActionListener(gf.getController().getAl());
+		buchenBTN.addActionListener(gf.getController().getAl());
+		kaufBTN.addActionListener(gf.getController().getAl());
 		verkaufBTN.addActionListener(gf.getController().getAl());
 		manuellBTN.addActionListener(gf.getController().getAl());
 	}
