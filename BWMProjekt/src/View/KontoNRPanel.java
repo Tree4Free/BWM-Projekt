@@ -70,6 +70,9 @@ public class KontoNRPanel extends JPanel{
 	    jsp.setViewportView(kontoNRList);
 	    DTM=(DefaultTableModel)kontoNRList.getModel();
 	    DTM.setRowCount(0);
+	    kontoNRList.getTableHeader().setResizingAllowed(false);
+	    kontoNRList.getTableHeader().setReorderingAllowed(false);
+	    kontoNRList.getColumnModel().getColumn(0).setPreferredWidth(400);
 		jp.add(kontoNR);
 		jp.add(button);
 		this.add(jp, BorderLayout.NORTH);

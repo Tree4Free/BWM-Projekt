@@ -10,7 +10,8 @@ public class KontoNRFrame extends JFrame{
 		kp=new KontoNRPanel(bg);
 		// TODO Auto-generated constructor stub
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setSize(300, 500);
+		this.setExtendedState(this.MAXIMIZED_BOTH);
+		this.setLocationRelativeTo(null);
 		
 		this.add(kp);
 		this.setVisible(true);
