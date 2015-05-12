@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 
 import View.BuchungsFrame;
+import View.KaufFrame;
 import View.KontoNRFrame;
 
 public class BWMActionListener implements ActionListener{
@@ -29,6 +30,10 @@ public class BWMActionListener implements ActionListener{
 					BuchungsFrame f= new BuchungsFrame(bw);
 				}
 			});
+			break;
+		case "Kauf":
+			System.out.println("Kauf");
+			KaufFrame k = new KaufFrame(bw);
 			break;
 		case "Verkauf":
 			System.out.println("Verkauf");
