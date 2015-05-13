@@ -8,6 +8,7 @@ import javax.swing.SwingUtilities;
 import View.BuchungsFrame;
 import View.KaufFrame;
 import View.KontoNRFrame;
+import View.VerkaufFrame;
 
 public class BWMActionListener implements ActionListener{
 	BackgroundWork bw;
@@ -37,6 +38,7 @@ public class BWMActionListener implements ActionListener{
 			break;
 		case "Verkauf":
 			System.out.println("Verkauf");
+			VerkaufFrame v = new VerkaufFrame(bw);
 			break;
 		case "Kontoplan":
 			System.out.println("Kontoplan");
