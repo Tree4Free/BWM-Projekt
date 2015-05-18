@@ -1,9 +1,14 @@
 package Control;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.SwingUtilities;
 
@@ -34,6 +39,25 @@ public class BackgroundWork {
 				frame=new GuiFrame("BWM-Projekt", tempBG);
 			}
 		});
+		TimerTask uploadCheckerTimerTask = new TimerTask(){
+
+			public void run() {
+				try {
+					File f=new File("save.sav");
+					FileOutputStream FOS =new FileOutputStream(f);
+					ObjectOutputStream OOS =new ObjectOutputStream(FOS);
+					OOS.writeObject(getAr());
+					System.out.println("Autosave complete: "+f.getAbsolutePath());
+					OOS.close();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+			}
+		};
+
+		Timer uploadCheckerTimer = new Timer(true);
+		uploadCheckerTimer.scheduleAtFixedRate(uploadCheckerTimerTask, 0, 300000);
 	}
 	
 	public void load(){
@@ -64,6 +88,10 @@ public class BackgroundWork {
 	
 	public ArrayList<KKlasse> getAr(){
 		return klassen;
+	}
+	
+	public void setAr(ArrayList<KKlasse> kk){
+		this.klassen=kk;
 	}
 	
 	public BWMActionListener getAl() {
