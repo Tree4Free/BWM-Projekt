@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,11 +23,18 @@ import Model.KKlassePassiv;
 public class BuchungsPanel extends JPanel{
 	BackgroundWork bg;
 	BuchungsFrame bf;
+	JTextField v1;
+	JTextField v2;
+	JTextField v3;
+	JTextField v4;
+	JTextField v5;
+	JTextField v6;
 	public BuchungsPanel(BackgroundWork bg, BuchungsFrame b) {
 		// TODO Auto-generated constructor stub
 		this.bg=bg;
 		bf=b;
-		JTextField v1=new JTextField();
+		this.setLayout(new GridLayout(1, 7));
+		v1=new JTextField();
 		v1.setPreferredSize(new Dimension(100,30));
 		this.add(v1);
 		JLabel k1=new JLabel();
@@ -112,7 +120,7 @@ public class BuchungsPanel extends JPanel{
 		
 		this.add(k1);
 		
-		JTextField v2=new JTextField();
+		v2=new JTextField();
 		v2.setPreferredSize(new Dimension(100,30));
 		this.add(v2);
 		v2.setVisible(false);
@@ -120,7 +128,7 @@ public class BuchungsPanel extends JPanel{
 		JLabel k2=new JLabel("/");
 		this.add(k2);
 		
-		JTextField v3=new JTextField();
+		v3=new JTextField();
 		v3.setPreferredSize(new Dimension(100,30));
 		this.add(v3);
 		
@@ -207,7 +215,7 @@ public class BuchungsPanel extends JPanel{
 			}
 		});
 		
-		JTextField v4=new JTextField();
+		v4=new JTextField();
 		v4.setPreferredSize(new Dimension(100,30));
 		this.add(v4);
 		
@@ -217,13 +225,17 @@ public class BuchungsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				int i;
 				if (!v1.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
-					
+					System.out.println("0");
+					spalteZwei();
 				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("3")||v1.getText().startsWith("9"))){
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+					
 				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("4")||v1.getText().startsWith("8"))){
 					bg.getAr().get(bg.getAr().indexOf(new ErKlasse(v1.getText(), k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(v3.getText(), k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
@@ -244,6 +256,20 @@ public class BuchungsPanel extends JPanel{
 			}
 		});
 		this.add(b1);
+	}
+	
+	public void spalteZwei(){
+		if (bf.expanded) {
+			if (bf.v5.getText().length()!=0 &&(bf.v5.getText().startsWith("0")||bf.v5.getText().startsWith("1")||bf.v5.getText().startsWith("2"))) {
+				System.out.println("true");
+				bg.getAr().get(bg.getAr().indexOf(new AwKlasse(bf.v5.getText(), bf.l1.getText()))).getSoll().add(Float.parseFloat(bf.v6.getText()));
+			}else if (true) {
+				System.out.println("false");
+			}
+			
+		}else {
+			System.out.println("voll false");
+		}
 	}
 	
 	public boolean isNumb(char[] a){
