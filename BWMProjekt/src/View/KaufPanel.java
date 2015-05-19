@@ -140,7 +140,7 @@ public class KaufPanel extends JPanel implements ActionListener{
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
+				//// TODO Auto-generated method stub
 				
 			}
 			

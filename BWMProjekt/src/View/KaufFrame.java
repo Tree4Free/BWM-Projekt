@@ -8,7 +8,7 @@ import Control.BackgroundWork;
 
 public class KaufFrame extends JFrame{
 	public KaufFrame(BackgroundWork bg) {
-		// TODO Auto-generated constructor stub
+		//// TODO Auto-generated constructor stub
 		KaufPanel kp=new KaufPanel(bg,this);
 		this.add(kp);
 		this.setSize(new Dimension(800,400));
