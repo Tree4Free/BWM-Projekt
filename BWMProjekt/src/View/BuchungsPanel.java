@@ -220,15 +220,26 @@ public class BuchungsPanel extends JPanel{
 				if (!v1.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
-					if(JOptionPane.showConfirmDialog(null, "Buchung erfolgreich. Weiter buchen?","Buchung erfolgreich",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
-						b.dispose();
-					}else {
-						v1.setText("");
-						v3.setText("");
-						v4.setText("");
-					}
-				}else {
+					
+				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("3")||v1.getText().startsWith("9"))){
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("4")||v1.getText().startsWith("8"))){
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("5")||v1.getText().startsWith("6")||v1.getText().startsWith("7"))){
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+				}else{
 					JOptionPane.showMessageDialog(null, "Buchung fehlgeschlagen", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(JOptionPane.showConfirmDialog(null, "Buchung erfolgreich. Weiter buchen?","Buchung erfolgreich",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+					b.dispose();
+				}else {
+					v1.setText("");
+					v3.setText("");
+					v4.setText("");
 				}
 			}
 		});
