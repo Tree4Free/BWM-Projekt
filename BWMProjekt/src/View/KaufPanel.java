@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -31,7 +32,9 @@ public class KaufPanel extends JPanel implements ActionListener{
 		v1.setPreferredSize(new Dimension(100,30));
 		this.add(v1);
 		JLabel k1=new JLabel();
-v1.addKeyListener(new KeyListener() {
+		JLabel steuer = new JLabel();
+		JLabel v4=new JLabel();
+		v1.addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -113,10 +116,36 @@ v1.addKeyListener(new KeyListener() {
 		
 		this.add(k1);
 		
-		JTextField v2=new JTextField();
-		v2.setPreferredSize(new Dimension(100,30));
-		this.add(v2);
-		v2.setVisible(false);
+		JTextField netto = new JTextField();
+		netto.setPreferredSize(new Dimension(80,30));
+		netto.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+				steuer.setText(""+(Integer.parseInt(netto.getText())/5)+" €");
+				v4.setText((Integer.parseInt(netto.getText())+Integer.parseInt(netto.getText())/5)+" €");
+				}catch(NumberFormatException ex){
+					steuer.setText("");
+				}
+				
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		this.add(netto);
 		
 		
 		JLabel k2=new JLabel("/");
@@ -134,8 +163,7 @@ v1.addKeyListener(new KeyListener() {
 		
 		this.add(patternList);
 		
-		JTextField v4=new JTextField();
-		v4.setPreferredSize(new Dimension(100,30));
+
 		this.add(v4);
 		
 		
@@ -160,6 +188,14 @@ v1.addKeyListener(new KeyListener() {
 			}
 		});
 		this.add(b1);
+		
+		JLabel l1 = new JLabel();
+		l1.setText("2500 Vorsteuer");
+		this.add(l1);
+		this.add(steuer);
+		
+		
+		
 	}
 	
 	public boolean isNumb(char[] a){
