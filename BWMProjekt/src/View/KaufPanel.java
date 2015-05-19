@@ -34,6 +34,8 @@ public class KaufPanel extends JPanel implements ActionListener{
 		JLabel k1=new JLabel();
 		JLabel steuer = new JLabel();
 		JLabel v4=new JLabel();
+		JLabel l1 = new JLabel();
+		l1.setText("2500 Vorsteuer");
 		v1.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -129,8 +131,8 @@ public class KaufPanel extends JPanel implements ActionListener{
 			@Override
 			public void keyReleased(KeyEvent e) {
 				try{
-				steuer.setText(""+(Integer.parseInt(netto.getText())/5)+" €");
-				v4.setText((Integer.parseInt(netto.getText())+Integer.parseInt(netto.getText())/5)+" €");
+				steuer.setText(""+(Float.parseFloat(netto.getText())/5)+" €");
+				v4.setText(""+(Float.parseFloat(netto.getText())+Float.parseFloat(netto.getText())/5)+" €");
 				}catch(NumberFormatException ex){
 					steuer.setText("");
 				}
@@ -154,6 +156,9 @@ public class KaufPanel extends JPanel implements ActionListener{
 		String[] patternExamples = {
 		         "2700 Kassa",
 		         "2800 Bank",
+		         "3185 Verbindlichkeiten Kreditkarte",
+		         "3186 Verbindlichkeiten Bankomatkarte",
+		         "3300 Verbindlichkeiten aus Liferungen und Leistungen Inland (Sammelkonto)",
 		         "5010 Handelswaren-Einsatz"
 		};
 		JComboBox<String> patternList = new JComboBox<String>(patternExamples);
@@ -173,9 +178,10 @@ public class KaufPanel extends JPanel implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (!v1.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
-					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
-					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(patternList.getSelectedItem().toString().substring(0, 4), 0, patternList.getSelectedItem().toString().substring(5)))).getHaben().add(Float.parseFloat(v4.getText()));
+				if (!v1.getText().equals("")&&patternList.getSelectedItem().toString().startsWith("3")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(netto.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(patternList.getSelectedItem().toString().substring(0, 4), 0, patternList.getSelectedItem().toString().substring(5)))).getHaben().add(Float.parseFloat(v4.getText().substring(0, v4.getText().lastIndexOf(" "))));
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv("2500",0,l1.getText()))).getSoll().add(Float.parseFloat(steuer.getText().substring(0, steuer.getText().lastIndexOf(" "))));
 					
 					
 					if(JOptionPane.showConfirmDialog(null, "Buchung erfolgreich. Weiter buchen?","Buchung erfolgreich",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
@@ -184,13 +190,15 @@ public class KaufPanel extends JPanel implements ActionListener{
 						v1.setText("");
 						v4.setText("");
 					}
+				}else if(!v1.getText().equals("")&&patternList.getSelectedItem().toString().startsWith("2")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))){
+					
 				}
 			}
 		});
 		this.add(b1);
 		
-		JLabel l1 = new JLabel();
-		l1.setText("2500 Vorsteuer");
+		
+		
 		this.add(l1);
 		this.add(steuer);
 		
