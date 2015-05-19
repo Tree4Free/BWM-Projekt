@@ -222,14 +222,14 @@ public class BuchungsPanel extends JPanel{
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
 					
 				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("3")||v1.getText().startsWith("9"))){
-					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
-					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
 				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("4")||v1.getText().startsWith("8"))){
-					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
-					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new ErKlasse(v1.getText(), k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(v3.getText(), k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
 				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("5")||v1.getText().startsWith("6")||v1.getText().startsWith("7"))){
-					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
-					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(v1.getText(), k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new ErKlasse(v3.getText(), k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
 				}else{
 					JOptionPane.showMessageDialog(null, "Buchung fehlgeschlagen", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
