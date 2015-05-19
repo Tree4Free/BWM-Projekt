@@ -9,7 +9,7 @@ import Control.BackgroundWork;
 public class BuchungsFrame extends JFrame{
 	public BuchungsFrame(BackgroundWork bg) {
 		// TODO Auto-generated constructor stub
-		BuchungsPanel bp=new BuchungsPanel(bg);
+		BuchungsPanel bp=new BuchungsPanel(bg, this);
 		this.add(bp);
 		this.setSize(new Dimension(700,400));
 		this.setLocationRelativeTo(null);

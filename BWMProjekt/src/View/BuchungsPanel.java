@@ -21,9 +21,11 @@ import Model.KKlassePassiv;
 
 public class BuchungsPanel extends JPanel{
 	BackgroundWork bg;
-	public BuchungsPanel(BackgroundWork bg) {
+	BuchungsFrame bf;
+	public BuchungsPanel(BackgroundWork bg, BuchungsFrame b) {
 		// TODO Auto-generated constructor stub
 		this.bg=bg;
+		bf=b;
 		JTextField v1=new JTextField();
 		v1.setPreferredSize(new Dimension(100,30));
 		this.add(v1);
@@ -218,7 +220,15 @@ public class BuchungsPanel extends JPanel{
 				if (!v1.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
-					JOptionPane.showMessageDialog(null, "Erfolgreich gebucht", "Erfolgreich", JOptionPane.PLAIN_MESSAGE);
+					if(JOptionPane.showConfirmDialog(null, "Buchung erfolgreich. Weiter buchen?","Buchung erfolgreich",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+						b.dispose();
+					}else {
+						v1.setText("");
+						v3.setText("");
+						v4.setText("");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Buchung fehlgeschlagen", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

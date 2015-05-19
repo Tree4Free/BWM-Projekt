@@ -22,9 +22,11 @@ import Model.KKlassePassiv;
 
 public class KaufPanel extends JPanel implements ActionListener{
 	BackgroundWork bg;
-	public KaufPanel(BackgroundWork bg) {
+	KaufFrame kf;
+	public KaufPanel(BackgroundWork bg, KaufFrame k) {
 		// TODO Auto-generated constructor stub
 		this.bg=bg;
+		kf=k;
 		JTextField v1=new JTextField();
 		v1.setPreferredSize(new Dimension(100,30));
 		this.add(v1);
@@ -146,7 +148,14 @@ v1.addKeyListener(new KeyListener() {
 				if (!v1.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(patternList.getSelectedItem().toString().substring(0, 4), 0, patternList.getSelectedItem().toString().substring(5)))).getHaben().add(Float.parseFloat(v4.getText()));
-					JOptionPane.showMessageDialog(null, "Erfolgreich gebucht", "Erfolgreich", JOptionPane.PLAIN_MESSAGE);
+					
+					
+					if(JOptionPane.showConfirmDialog(null, "Buchung erfolgreich. Weiter buchen?","Buchung erfolgreich",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+						kf.dispose();
+					}else {
+						v1.setText("");
+						v4.setText("");
+					}
 				}
 			}
 		});

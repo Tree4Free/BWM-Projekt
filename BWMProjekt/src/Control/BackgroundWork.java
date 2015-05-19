@@ -24,6 +24,7 @@ public class BackgroundWork {
 	ArrayList<KKlasse> klassen;
 	BWMActionListener al;
 	GuiFrame frame;
+	int i=0;
 	public BackgroundWork() {
 		// TODO Auto-generated constructor stub
 		BackgroundWork tempBG = this;
@@ -31,6 +32,7 @@ public class BackgroundWork {
 		kKlassenPlan = new Properties();
 		load();
 		klassen = new ArrayList<>();
+		
 		fill();
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
@@ -39,10 +41,14 @@ public class BackgroundWork {
 				frame=new GuiFrame("BWM-Projekt", tempBG);
 			}
 		});
-		TimerTask uploadCheckerTimerTask = new TimerTask(){
+		TimerTask autosaveTimerTask = new TimerTask(){
 
 			public void run() {
 				try {
+					if(i==0){
+						i++;
+						return;
+					}
 					File f=new File("save.sav");
 					FileOutputStream FOS =new FileOutputStream(f);
 					ObjectOutputStream OOS =new ObjectOutputStream(FOS);
@@ -56,8 +62,8 @@ public class BackgroundWork {
 			}
 		};
 
-		Timer uploadCheckerTimer = new Timer(true);
-		uploadCheckerTimer.scheduleAtFixedRate(uploadCheckerTimerTask, 0, 300000);
+		Timer autosaveTimer = new Timer(true);
+		autosaveTimer.scheduleAtFixedRate(autosaveTimerTask, 0, 300000);
 	}
 	
 	public void load(){
