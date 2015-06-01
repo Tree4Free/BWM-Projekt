@@ -225,24 +225,33 @@ public class BuchungsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				String value=v4.getText();
+				if(v2.getText().length()!=0){
+					value=v2.getText();
+				}
 				int i;
-				if (!v1.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
-					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+				if(bg.getAr().contains(new KKlasseAktiv(v1.getText(), 0.0f, ""))&&bg.getAr().contains(new KKlasseAktiv(v3.getText(), 0.0f, ""))){
+				if (!v1.getText().equals("")&&!v3.getText().equals("")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(value));
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v3.getText(), 0, k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
-					System.out.println("0");
-					spalteZwei();
-				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("3")||v1.getText().startsWith("9"))){
-					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					if(!spalteZwei()) return;
+				}else if(!v1.getText().equals("")&&!v3.getText().equals("")&&(v1.getText().startsWith("3")||v1.getText().startsWith("9"))){
+					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(v1.getText(), 0, k1.getText()))).getHaben().add(Float.parseFloat(value));
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v3.getText(), 0, k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
-					
-				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("4")||v1.getText().startsWith("8"))){
-					bg.getAr().get(bg.getAr().indexOf(new ErKlasse(v1.getText(), k1.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					if(!spalteZwei()) return;
+				}else if(!v1.getText().equals("")&&!v3.getText().equals("")&&(v1.getText().startsWith("4")||v1.getText().startsWith("8"))){
+					bg.getAr().get(bg.getAr().indexOf(new ErKlasse(v1.getText(), k1.getText()))).getHaben().add(Float.parseFloat(value));
 					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(v3.getText(), k3.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
-				}else if(!v1.getText().equals("")&&(v1.getText().startsWith("5")||v1.getText().startsWith("6")||v1.getText().startsWith("7"))){
-					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(v1.getText(), k1.getText()))).getSoll().add(Float.parseFloat(v4.getText()));
+					if(!spalteZwei()) return;
+				}else if(!v1.getText().equals("")&&!v3.getText().equals("")&&(v1.getText().startsWith("5")||v1.getText().startsWith("6")||v1.getText().startsWith("7"))){
+					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(v1.getText(), k1.getText()))).getSoll().add(Float.parseFloat(value));
 					bg.getAr().get(bg.getAr().indexOf(new ErKlasse(v3.getText(), k3.getText()))).getHaben().add(Float.parseFloat(v4.getText()));
+					if(!spalteZwei()) return;
 				}else{
+					JOptionPane.showMessageDialog(null, "Buchung fehlgeschlagen", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				}else {
 					JOptionPane.showMessageDialog(null, "Buchung fehlgeschlagen", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -250,26 +259,35 @@ public class BuchungsPanel extends JPanel{
 					b.dispose();
 				}else {
 					v1.setText("");
+					v2.setText("");
 					v3.setText("");
 					v4.setText("");
+					b.v5.setText("");
+					b.v6.setText("");
 				}
 			}
 		});
 		this.add(b1);
 	}
 	
-	public void spalteZwei(){
+	public boolean spalteZwei(){
 		if (bf.expanded) {
-			if (bf.v5.getText().length()!=0 &&(bf.v5.getText().startsWith("0")||bf.v5.getText().startsWith("1")||bf.v5.getText().startsWith("2"))) {
-				System.out.println("true");
-				bg.getAr().get(bg.getAr().indexOf(new AwKlasse(bf.v5.getText(), bf.l1.getText()))).getSoll().add(Float.parseFloat(bf.v6.getText()));
-			}else if (true) {
-				System.out.println("false");
+			try {
+				if (bf.v5.getText().length()!=0 &&(bf.v5.getText().startsWith("0")||bf.v5.getText().startsWith("1")||bf.v5.getText().startsWith("2"))) {
+					System.out.println("true");
+					bg.getAr().get(bg.getAr().indexOf(new AwKlasse(bf.v5.getText(), bf.l1.getText()))).getSoll().add(Float.parseFloat(bf.v6.getText()));
+				}else{
+					System.out.println("Fehler");
+					throw new Exception();
+				}
+	
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Buchung fehlgeschlagen", "Error", JOptionPane.ERROR_MESSAGE);
+				return false;
 			}
-			
-		}else {
-			System.out.println("voll false");
 		}
+		return true;
 	}
 	
 	public boolean isNumb(char[] a){
