@@ -178,7 +178,20 @@ public class KaufPanel extends JPanel implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (!v1.getText().equals("")&&patternList.getSelectedItem().toString().startsWith("3")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
+				if (!v1.getText().equals("")&&(patternList.getSelectedItem().toString().startsWith("2")||patternList.getSelectedItem().toString().startsWith("3"))&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))) {
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(netto.getText()));
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(patternList.getSelectedItem().toString().substring(0, 4), 0, patternList.getSelectedItem().toString().substring(5)))).getHaben().add(Float.parseFloat(v4.getText().substring(0, v4.getText().lastIndexOf(" "))));
+					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv("2500",0,l1.getText()))).getSoll().add(Float.parseFloat(steuer.getText().substring(0, steuer.getText().lastIndexOf(" "))));
+					
+					
+					if(JOptionPane.showConfirmDialog(null, "Buchung erfolgreich. Weiter buchen?","Buchung erfolgreich",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+						kf.dispose();
+					}else {
+						v1.setText("");
+						netto.setText("");
+						v4.setText("");
+					}
+				}else if(!v1.getText().equals("")&&patternList.getSelectedItem().toString().startsWith("3")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))){
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv(v1.getText(), 0, k1.getText()))).getSoll().add(Float.parseFloat(netto.getText()));
 					bg.getAr().get(bg.getAr().indexOf(new KKlassePassiv(patternList.getSelectedItem().toString().substring(0, 4), 0, patternList.getSelectedItem().toString().substring(5)))).getHaben().add(Float.parseFloat(v4.getText().substring(0, v4.getText().lastIndexOf(" "))));
 					bg.getAr().get(bg.getAr().indexOf(new KKlasseAktiv("2500",0,l1.getText()))).getSoll().add(Float.parseFloat(steuer.getText().substring(0, steuer.getText().lastIndexOf(" "))));
@@ -188,13 +201,13 @@ public class KaufPanel extends JPanel implements ActionListener{
 						kf.dispose();
 					}else {
 						v1.setText("");
+						netto.setText("");
 						v4.setText("");
-					}
-				}else if(!v1.getText().equals("")&&patternList.getSelectedItem().toString().startsWith("2")&&(v1.getText().startsWith("0")||v1.getText().startsWith("1")||v1.getText().startsWith("2"))){
-					
 				}
 			}
+			}
 		});
+		
 		this.add(b1);
 		
 		
